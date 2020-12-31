@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<PackageType>Template</PackageType>
+		<PackageId>TemplatePack.WebService</PackageId>
+		<Title>TemplatePack.WebService</Title>
+		<Authors>DrDoctor</Authors>
+		<PackageTags>dotnet-new;templates;templatepack</PackageTags>
+
+		<TargetFramework>netstandard2.0</TargetFramework>
+
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ContentTargetFolders>content</ContentTargetFolders>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Templates\**\*" Exclude="Templates\**\bin\**;Templates\**\obj\**" />
+		<Compile Remove="**\*" />
+	</ItemGroup>
+
+</Project>

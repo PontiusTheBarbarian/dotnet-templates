@@ -1,0 +1,9 @@
+variables:
+#//if (WebApi != "")
+- name: WEBAPI_CSPROJ
+  value: 'src/Company.WebApi/Company.WebApi.csproj'
+#//endif
+- name: SOLUTION_FILE
+  value: Company.Solution.sln
+- name: VM_IMAGE
+  value: 'windows-latest'

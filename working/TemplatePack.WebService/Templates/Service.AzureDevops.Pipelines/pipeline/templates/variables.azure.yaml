@@ -1,0 +1,9 @@
+variables:
+- name: AZURE_RESOURCEGROUP_NAME
+  value: 'Company.ResourceGroup.Name'
+- name: AZURE_SUBSCRIPTION
+  value: 'Company.Azure.ServiceConnection'
+#//if (WebApi != "")
+- name: AZURE_WEBAPI_NAME
+  value: 'Company.WebApi'
+#//endif

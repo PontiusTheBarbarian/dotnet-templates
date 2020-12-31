@@ -1,0 +1,103 @@
+{
+    "author": "Liam Appleyard",
+    "$schema": "http://json.schemastore.org/template",
+    "classifications": [
+        "Service Template",
+        "Azure Pipelines",
+        "YAML",
+        "CICD"
+    ],
+    "name": "Service YAML Pipeline (AzureDevops)",
+    "identity": "Service.AzDo.Pipelines",
+    "shortName": "serv-cicd",
+    "sourceName": "Company.Pipeline",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "YAML",
+        "type": "project"
+    },
+    "sources": [
+        {
+            "source": "./",
+            "target": "./",
+            "modifiers": [
+                {
+                    "condition": "true",
+                    "exclude": [
+                        ".vs/**/*",
+                        ".vscode/**/*"
+                    ]
+                }
+            ]
+        }
+    ],
+    "symbols": {
+        "Solution": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Company.Solution.sln",
+            "replaces": "Company.Solution.sln",
+            "description": "The solution file relative to the root",
+            "isRequired": true
+        },
+        "WebApi": {
+            "type": "parameter",
+            "datatype": "string",
+            "replaces": "Company.WebApi",
+            "description": "Name of the web api",
+            "isRequired": false,
+            "defaultValue": ""
+        },
+        "ResourceGroupName": {
+            "type": "parameter",
+            "datatype": "string",
+            "replaces": "Company.ResourceGroup.Name",
+            "description": "The name of the Resource group to publish",
+            "isRequired": false,
+            "defaultValue": ""
+        },
+        "ServiceConnectionName": {
+            "type": "parameter",
+            "datatype": "string",
+            "replaces": "Company.Azure.ServiceConnection",
+            "description": "The name of the ARM service connection",
+            "isRequired": false
+        }
+     },
+     "specialCustomOperations": {
+        "**/*.yaml": {
+            "operations": [
+                {
+                    "configuration": {
+                        "actionableElse": [
+                            "#//else"
+                        ],
+                        "actionableElseif": [
+                            "#//elif"
+                        ],
+                        "actionableIf": [
+                            "#//if"
+                        ],
+                        "actions": [
+                            "pseudoComment"
+                        ],
+                        "endif": [
+                            "#//endif"
+                        ],
+                        "trim": "true",
+                        "wholeLine": "true"
+                    },
+                    "type": "conditional"
+                },
+                {
+                    "configuration": {
+                        "id": "pseudoComment",
+                        "original": "#//",
+                        "replacement": ""
+                    },
+                    "type": "replacement"
+                }
+            ]
+        }
+    }
+}

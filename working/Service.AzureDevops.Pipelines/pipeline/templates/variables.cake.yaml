@@ -1,0 +1,9 @@
+variables:
+- name: CAKE_VERSION
+  value: '0.38.5'
+- name: CAKE_SCRIPT
+  value: 'build.cake'
+- name: CAKE_VERBOSITY
+  value: 'Verbose'
+- name: CAKE_TARGET
+  value: 'Default'

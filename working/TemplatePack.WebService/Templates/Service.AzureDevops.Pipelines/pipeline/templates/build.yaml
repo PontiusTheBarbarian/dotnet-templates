@@ -1,0 +1,26 @@
+jobs:
+- job:
+  steps:
+  - task: Cake@2
+    displayName: 'Build, Test, Pack & Publish'
+    inputs:
+      script: $(CAKE_SCRIPT)
+      target: $(CAKE_TARGET)
+      verbosity: $(CAKE_VERBOSITY)
+      Version: $(CAKE_VERSION)
+      arguments: >-
+       --Major=$(MAJOR_VERSION)
+       --Minor=$(MINOR_VERSION)
+       --Patch=$(PATCH_VERSION)
+       --RunNumber=$(RUN_NUMBER)
+       --Solution=$(SOLUTION_FILE)
+#//if (WebApi != "")
+       --WebApi=$(WEBAPI_CSPROJ)
+#//endif
+       --OutputDirectory=$(Build.ArtifactStagingDirectory)
+
+  - task: PublishBuildArtifacts@1
+    displayName: ".NET Publish"
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      ArtifactName: drop

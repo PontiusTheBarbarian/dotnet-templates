@@ -1,0 +1,93 @@
+{
+    "author": "Liam Appleyard",
+    "$schema": "http://json.schemastore.org/template",
+    "classifications": [
+        "Service Template",
+        "Cake",
+        "C#"
+    ],
+    "name": "Service Cake",
+    "identity": "Service.Cake",
+    "shortName": "serv-cake",
+    "sourceName": "Company.Cake",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sources": [
+        {
+            "source": "./",
+            "target": "./",
+            "modifiers": [
+                {
+                    "condition": "true",
+                    "exclude": [
+                        ".vs/**/*",
+                        ".vscode/**/*"
+                    ]
+                }
+            ]
+        }
+    ],
+    "symbols": {
+        "Solution": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "Company.Solution.sln",
+            "description": "Name and extension of the target solution",
+            "isRequired": true
+        },
+        "WebApi": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "Company.WebApi.csproj",
+            "description": "Path to .csproj file relative to the root",
+            "isRequired": false
+        },
+        "IncludeNuget": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "true",
+            "description": "If specified, includes a NuGet pack step",
+            "isRequired": false
+        }
+    },
+    "postActions": [    ],
+    "specialCustomOperations": {
+        "**/*.cake": {
+            "operations": [
+                {
+                    "configuration": {
+                        "actionableElse": [
+                            "//#else"
+                        ],
+                        "actionableElseif": [
+                            "//#elif"
+                        ],
+                        "actionableIf": [
+                            "//#if"
+                        ],
+                        "actions": [
+                            "pseudoComment"
+                        ],
+                        "endif": [
+                            "//#endif"
+                        ],
+                        "trim": "true",
+                        "wholeLine": "true"
+                    },
+                    "type": "conditional"
+                },
+                {
+                    "configuration": {
+                        "id": "pseudoComment",
+                        "original": "///",
+                        "replacement": ""
+                    },
+                    "type": "replacement"
+                }
+            ]
+        }
+    }
+}

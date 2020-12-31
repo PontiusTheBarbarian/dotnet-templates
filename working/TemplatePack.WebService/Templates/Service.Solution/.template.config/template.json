@@ -1,0 +1,52 @@
+{
+    "author": "Liam Appleyard",
+    "$schema": "http://json.schemastore.org/template",
+    "classifications": [
+        "Service Template",
+        "Solution",
+        "C#"
+    ],
+    "name": "Service Solution",
+    "identity": "Service.Solution",
+    "shortName": "serv-sln",
+    "sourceName": "Company.Solution",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "guids": [
+        "374E3A14-5200-4FD3-83DA-A291C29B17BD"
+    ],
+    "sources": [
+        {
+            "source": "./",
+            "target": "./",
+            "modifiers": [
+                {
+                    "condition": "true",
+                    "exclude": [
+                        ".vs/**/*",
+                        ".vscode/**/*"
+                    ]
+                }
+            ]
+        }
+    ],
+    "symbols": {   },
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "description ": "Creates the default folder structure",
+            "args": {
+                "executable": "setup.cmd"
+            },
+            "manualInstructions": [
+                {
+                    "text": "Run 'setup.cmd'"
+                }
+            ],
+            "continueOnError": true
+        }
+    ]
+}
