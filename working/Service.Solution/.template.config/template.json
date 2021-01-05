@@ -10,7 +10,7 @@
     "identity": "Service.Solution",
     "shortName": "serv-sln",
     "sourceName": "Company.Solution",
-    "preferNameDirectory": true,
+    "preferNameDirectory": false,
     "tags": {
         "language": "C#",
         "type": "project"

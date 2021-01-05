@@ -11,7 +11,7 @@
     "identity": "Service.AzDo.Pipelines",
     "shortName": "serv-cicd",
     "sourceName": "Company.Pipeline",
-    "preferNameDirectory": true,
+    "preferNameDirectory": false,
     "tags": {
         "language": "YAML",
         "type": "project"

@@ -1,12 +1,16 @@
-#if (IncludeAuditing)
+// <copyright file="Startup.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+#if IncludeAuditing
 using Templates.WebApi.Modules.Auditing;
 #endif
 using Company.WebApi.Modules;
 using Company.WebApi.Modules.ExceptionHandling;
 using Company.WebApi.Modules.FeatureManagement;
+using Company.WebApi.Modules.Health;
 using Company.WebApi.Modules.Logging;
 using Company.WebApi.Modules.Versioning;
-using Company.WebApi.Modules.Health;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,51 +20,73 @@ using Serilog;
 
 namespace Company.WebApi
 {
-    public class Startup
-    {
-        public virtual IConfiguration Configuration { get; }
+	/// <summary>
+	/// Startup.
+	/// </summary>
+	public class Startup
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Startup"/> class.
+		/// </summary>
+		/// <param name="configuration"></param>
+		public Startup(IConfiguration configuration)
+		{
+			this.Configuration = configuration;
+		}
 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+		/// <summary>
+		/// Gets Configuration object.
+		/// </summary>
+		public virtual IConfiguration Configuration { get; }
 
-        public virtual void ConfigureServices(IServiceCollection services)
-            => services
-                .AddFeatureFlags(Configuration)
-                .AddSerilog(Configuration)
-                .AddCustomControllers()
-                .AddAuthentication(Configuration)
-                .AddCors()
-                .AddInvalidRequestLogging()
-                .AddCustomHealthChecks()
-                .AddApplicationInsights(Configuration)
-                .AddVersioning()
-                .AddSwagger(Configuration)
-#if(IncludeAuditing)
+		/// <summary>
+		/// Register services.
+		/// </summary>
+		/// <param name="services"></param>
+		public virtual void ConfigureServices(
+			IServiceCollection services)
+			=> services
+				.AddFeatureFlags(this.Configuration)
+				.AddSerilog(this.Configuration)
+				.AddCustomControllers()
+				.AddAuthentication(this.Configuration)
+				.AddCors()
+				.AddInvalidRequestLogging()
+				.AddCustomHealthChecks()
+				.AddApplicationInsights(this.Configuration)
+				.AddVersioning()
+				.AddSwagger(this.Configuration)
+#if IncludeAuditing
                 .AddAuditing()
 #endif
-                .AddMvc()
-                ;
+				.AddMvc()
+				;
 
-        public virtual void Configure(IApplicationBuilder app,
-            IWebHostEnvironment env,
-            ILoggerFactory loggerFactory)
-            => app
-               .UseSerilog(loggerFactory)
-               .UseExceptionHandling(env)
-               .UseVersionedSwagger(Configuration)
-               .UseCustomCors()
-               .UseHttpsRedirection()
-               .UseRouting()
-               .UseHealthChecks()
-               .UseAuthentication()
-               .UseAuthorization()
-               .UseEndpoints(endpoints =>
-               {
-                   endpoints.MapControllers();
-                   endpoints.MapHealthChecks("/health");
-               })
-            ;
-    }
+		/// <summary>
+		/// Configure services.
+		/// </summary>
+		/// <param name="app"></param>
+		/// <param name="env"></param>
+		/// <param name="loggerFactory"></param>
+		public virtual void Configure(
+			IApplicationBuilder app,
+			IWebHostEnvironment env,
+			ILoggerFactory loggerFactory)
+			=> app
+			   .UseSerilog(loggerFactory)
+			   .UseExceptionHandling(env)
+			   .UseVersionedSwagger(this.Configuration)
+			   .UseCustomCors()
+			   .UseHttpsRedirection()
+			   .UseRouting()
+			   .UseHealthChecks()
+			   .UseAuthentication()
+			   .UseAuthorization()
+			   .UseEndpoints(endpoints =>
+			   {
+				   endpoints.MapControllers();
+				   endpoints.MapHealthChecks("/health");
+			   })
+			;
+	}
 }

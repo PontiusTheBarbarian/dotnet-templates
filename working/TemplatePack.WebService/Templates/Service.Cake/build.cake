@@ -134,6 +134,9 @@ Task("PublishWeb")
 			Configuration = configuration,
 			OutputDirectory = Directory(paths.OutputDirectory + "/Web")
 		});
+        
+        CreateDirectory(Directory(paths.OutputDirectory + "/AzureResourceManager"));
+        CopyFiles("./pipeline/AzureResourceManager/**/*", Directory(paths.OutputDirectory + "/AzureResourceManager"));
     });
 //#endif
 

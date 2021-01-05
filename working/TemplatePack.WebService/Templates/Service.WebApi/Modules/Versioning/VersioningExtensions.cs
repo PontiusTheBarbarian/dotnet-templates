@@ -1,18 +1,25 @@
-﻿using System;
+﻿// <copyright file="VersioningExtensions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Company.WebApi.Modules.Versioning
 {
-    internal static class VersioningExtensions
-    {
-        /// <summary>
-        /// Configure API URL versioning
-        /// </summary>
-        /// <param name="services">IServiceCollection servivces dependency injection container</param>
-        /// <param name="configureApiVersion">IConfiguration configuration</param>
-        /// <returns>IServiceCollection services</returns>
-       	internal static IServiceCollection AddVersioning(this IServiceCollection services)
+	/// <summary>
+	/// Versioning extensions.
+	/// </summary>
+	internal static class VersioningExtensions
+	{
+		/// <summary>
+		/// Add versioning to project.
+		/// </summary>
+		/// <param name="services"></param>
+		/// <returns><see cref="IServiceCollection"/>.</returns>
+		internal static IServiceCollection AddVersioning(
+			this IServiceCollection services)
 		{
 			var version = GetAssemblyVersion();
 
@@ -28,7 +35,11 @@ namespace Company.WebApi.Modules.Versioning
 		   });
 		}
 
-        internal static Version GetAssemblyVersion()
-             => typeof(VersioningExtensions).Assembly.GetName().Version;
-    }
+		/// <summary>
+		/// Get Assembly version.
+		/// </summary>
+		/// <returns><see cref="Version"/>.</returns>
+		internal static Version GetAssemblyVersion()
+			 => typeof(VersioningExtensions).Assembly.GetName().Version;
+	}
 }

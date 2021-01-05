@@ -6,16 +6,16 @@
             "shortName": "nr"
         },
         "AuthenticationType": {
-            "longName": "authentication-type",
+            "longName": "authentication",
             "shortName": "auth"
         },
         "IncludeKeyVault": {
-            "longName": "include-keyvault",
-            "shortName": "key-vault"
+            "longName": "key-vault",
+            "shortName": "kv"
         },
         "IncludeAuditing": {
-            "longName": "include-auditing",
-            "shortName": "audit"
+            "longName": "auditing",
+            "shortName": "au"
         }
     },
     "usageExamples": [
@@ -23,9 +23,9 @@
         "--no-restore",
         "-auth",
         "--authentication-type",
-        "-key",
-        "--include-keyvault",
-        "-aud",
-        "--include-auditing"
+        "-kv",
+        "--key-vault",
+        "-au",
+        "--auditing"
     ]
 }

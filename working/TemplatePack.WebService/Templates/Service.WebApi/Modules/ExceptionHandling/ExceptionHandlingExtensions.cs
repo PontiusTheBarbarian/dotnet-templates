@@ -1,17 +1,23 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿// <copyright file="ExceptionHandlingExtensions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Company.WebApi.Modules.ExceptionHandling
 {
-    internal static class ExceptionHandlingExtensions
-    {
+	internal static class ExceptionHandlingExtensions
+	{
 		/// <summary>
-		/// Registers the Api exception middleware in the request pipeline
+		/// Add exception handling to the project.
 		/// </summary>
 		/// <param name="app"></param>
-		/// <returns></returns>
-		internal static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder app,
+		/// <param name="env"></param>
+		/// <returns><see cref="IApplicationBuilder"/>.</returns>
+		internal static IApplicationBuilder UseExceptionHandling(
+			this IApplicationBuilder app,
 			IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())

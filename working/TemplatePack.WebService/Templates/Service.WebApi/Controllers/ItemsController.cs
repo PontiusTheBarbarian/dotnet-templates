@@ -1,25 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// <copyright file="ItemsController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using Company.WebApi.Modules.FeatureManagement;
+#if IncludeAuditing
+using Audit.WebApi;
+#endif
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-#if (IncludeAuditing)
-using Audit.WebApi;
-#endif
 
 namespace Company.WebApi.Controllers
 {
 	[Authorize]
 	[ApiController]
-    [ApiVersion("1.0")]
+	[ApiVersion("1.0")]
 	[Route("api/v{version:apiVersion}/[controller]")]
-#if (IncludeAuditing)
-	[AuditApi(EventTypeName = "{controller}/{action} ({verb})",
-	 IncludeResponseBody = true,
-	  IncludeRequestBody = true,
-	   IncludeModelState = true)]
+#if IncludeAuditing
+	[AuditApi(
+        EventTypeName = "{controller}/{action} ({verb})",
+        IncludeResponseBody = true,
+        IncludeRequestBody = true,
+        IncludeModelState = true)]
 #endif
 	public class ItemsController : ControllerBase
 	{
@@ -33,15 +38,14 @@ namespace Company.WebApi.Controllers
 			Tags = new[] { "Items" })]
 		[SwaggerResponse(
 			(int)HttpStatusCode.OK,
-		 	Type = typeof(string))]
+			Type = typeof(string))]
 		[SwaggerResponse(
 			(int)HttpStatusCode.NotFound,
-		 	Type = typeof(string))]
-		public string Get([FromRoute]int? id)
+			Type = typeof(string))]
+		public string Get([FromRoute] int? id)
 		{
 			return $"Id: {id}";
 		}
-
 
 		[HttpPost]
 		[AllowAnonymous]
@@ -52,14 +56,14 @@ namespace Company.WebApi.Controllers
 			Tags = new[] { "Items" })]
 		[SwaggerResponse(
 			(int)HttpStatusCode.Created,
-		 	Type = typeof(string))]
+			Type = typeof(string))]
 		[SwaggerResponse(
 			(int)HttpStatusCode.BadRequest,
-		 	Type = typeof(string))]
+			Type = typeof(string))]
 		[FeatureGate(MyFeatureFlags.FeatureB)]
 		public string Post(
 			[FromRoute][Required] int id,
-			[Required][FromBody]string name)
+			[Required][FromBody] string name)
 		{
 			return $"Id: {id}, name: {name}";
 		}

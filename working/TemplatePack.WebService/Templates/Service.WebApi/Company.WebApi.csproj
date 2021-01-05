@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<UserSecretsId>0be5852e-0ec5-43ec-ba55-79b357318871</UserSecretsId>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Remove="Startup.cs~RFa49b29.TMP" />
-	</ItemGroup>
+	<PropertyGroup>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<WarningsAsErrors>;</WarningsAsErrors>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Audit.NET" Version="16.2.0" />
@@ -28,6 +30,10 @@
 		<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(AuthenticationType) == 'AzureAD'">

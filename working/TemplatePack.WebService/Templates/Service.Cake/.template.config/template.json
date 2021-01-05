@@ -10,7 +10,7 @@
     "identity": "Service.Cake",
     "shortName": "serv-cake",
     "sourceName": "Company.Cake",
-    "preferNameDirectory": true,
+    "preferNameDirectory": false,
     "tags": {
         "language": "C#",
         "type": "project"

@@ -10,13 +10,14 @@
     "identity": "Service.WebApi",
     "shortName": "serv-webapi",
     "sourceName": "Company.WebApi",
-    "preferNameDirectory": true,
+    "preferNameDirectory": false,
     "tags": {
         "language": "C#",
         "type": "project"
     },
     "guids": [
-        "374E3A14-5200-4FD3-83DA-A291C29B17BD"
+        "374E3A14-5200-4FD3-83DA-A291C29B17BD",
+        "0be5852e-0ec5-43ec-ba55-79b357318871"
     ],
     "sources": [
         {
