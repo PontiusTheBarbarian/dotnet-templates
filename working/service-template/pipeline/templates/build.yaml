@@ -1,0 +1,23 @@
+jobs:
+- job:
+  steps:
+  - task: Cake@2
+    displayName: 'Build, Test, Pack & Publish'
+    inputs:
+      script: $(CAKE_SCRIPT)
+      target: $(CAKE_TARGET)
+      verbosity: $(CAKE_VERBOSITY)
+      Version: $(CAKE_VERSION)
+      arguments: >-
+       --AssemblyVersion=$(ASSEMBLY_VERSION)
+       --FileVersion=$(FILE_VERSION)
+       --InformationalVersion=$(INFORMATIONAL_VERSION)
+       --PackageVersion=$(PACKAGE_VERSION)
+       --OutputDirectory=$(Build.ArtifactStagingDirectory)
+       --Configuration=$(BUILD_CONFIGURATION)
+
+  - task: PublishBuildArtifacts@1
+    displayName: ".NET Publish"
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      ArtifactName: drop

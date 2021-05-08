@@ -1,0 +1,5 @@
+variables:
+- name: VM_IMAGE
+  value: 'windows-latest'
+- name: BUILD_CONFIGURATION
+  value: 'Release'

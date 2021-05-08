@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>0be5852e-0ec5-43ec-ba55-79b357318871</UserSecretsId>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<WarningsAsErrors>;</WarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Audit.NET" Version="16.2.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights" Version="2.16.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.10" />
+		<PackageReference Include="Microsoft.FeatureManagement" Version="2.2.0" />
+		<PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.2.0" />
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+		<PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3" />
+		<PackageReference Include="Serilog.Enrichers.Process" Version="2.0.1" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+		<PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.10" />
+		<PackageReference Include="Audit.NET" Version="16.2.0" />
+		<PackageReference Include="Audit.WebApi.Core" Version="16.2.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(AuthenticationType) == 'AzureAD'">
+		<PackageReference Include="Microsoft.Identity.Web" Version="1.*" />
+	</ItemGroup>
+</Project>

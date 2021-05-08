@@ -1,0 +1,37 @@
+variables:
+  MAJOR_VERSION: 1
+  MINOR_VERSION: 0
+  PATCH_VERSION: 0
+  RUN_NUMBER: $[counter(1, 1)]
+
+  ASSEMBLY_VERSION: >-
+   $[format('{0}.{1}.{2}.{3}',
+     variables['MAJOR_VERSION'],
+     variables['MINOR_VERSION'],
+     variables['PATCH_VERSION'],
+     variables['RUN_NUMBER'])]
+
+  FILE_VERSION: $(ASSEMBLY_VERSION)
+
+  INFORMATIONAL_VERSION: >-
+   $[format('{0}.{1}.{2}.{3}+{4}',
+     variables['MAJOR_VERSION'],
+     variables['MINOR_VERSION'],
+     variables['PATCH_VERSION'],
+     variables['RUN_NUMBER'],
+     variables['Build.SourceVersion'])]
+
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+   PACKAGE_VERSION: >-
+    $[format('{0}.{1}.{2}',
+      variables['MAJOR_VERSION'],
+      variables['MINOR_VERSION'],
+      variables['PATCH_VERSION'])]
+
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+   PACKAGE_VERSION: >-
+    $[format('{0}.{1}.{2}-alpha.{3}',
+      variables['MAJOR_VERSION'],
+      variables['MINOR_VERSION'],
+      variables['PATCH_VERSION'],
+      variables['RUN_NUMBER'])]

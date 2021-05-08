@@ -1,0 +1,32 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - 'main'
+      - 'bug/*'
+      - 'feature/*'
+      - 'hotfix/*'
+
+variables:
+  - template: templates/variables.cake.yaml
+  - template: templates/variables.versioning.yaml
+  - template: templates/variables.azure-devops.yaml
+  - template: templates/variables.azure.yaml
+
+name: >-
+  $[format('{0}.{1}.{2}-{3}.{4}',
+      variables['MAJOR_VERSION'],
+      variables['MINOR_VERSION'],
+      variables['PATCH_VERSION'],
+      variables['Build.SourceBranchName'],
+      variables['RUN_NUMBER'])
+
+pr: none
+
+pool:
+  vmImage: '$(VM_IMAGE)'
+
+stages:
+- stage: 'Continuous_Integration'
+  jobs:
+  - template: templates/build.yaml

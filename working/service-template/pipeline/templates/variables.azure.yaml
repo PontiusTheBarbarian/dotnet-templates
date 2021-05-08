@@ -1,0 +1,7 @@
+variables:
+- name: AZURE_RESOURCEGROUP_NAME
+  value: '_Company_._Project_.Azure.ResourceGroup.Name'
+- name: AZURE_SUBSCRIPTION
+  value: '_Company_._Project_.Azure.ServiceConnection'
+- name: AZURE_WEBAPI_NAME
+  value: '_Company_._Project_.WebApi'

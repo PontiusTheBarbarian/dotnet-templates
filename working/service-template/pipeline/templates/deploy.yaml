@@ -1,0 +1,23 @@
+jobs:
+- deployment:
+  environment: 'dev'
+  strategy:
+    runOnce:
+      deploy:
+       steps:
+       - task: AzureResourceGroupDeployment@2
+         displayName: "Resource Group Deploy: $(AZURE_RESOURCEGROUP_NAME)"
+         inputs:
+          action: 'Create Or Update Resource Group'
+          azureSubscription: $(AZURE_SUBSCRIPTION)
+          resourceGroupName: $(AZURE_RESOURCEGROUP_NAME)
+          deploymentMode: 'Incremental'
+          csmFile: '$(Pipeline.Workspace)/drop/AzureResourceManager/azuredeploy.json'
+          location: 'UK South'
+
+       - task: AzureWebApp@1
+         displayName: 'Azure App Service Deploy: $(AZURE_WEBAPI_NAME)'
+         inputs:
+          azureSubscription: $(AZURE_SUBSCRIPTION)
+          appName: '$(AZURE_WEBAPI_NAME)'
+          package: '$(Pipeline.Workspace)/drop/Web'

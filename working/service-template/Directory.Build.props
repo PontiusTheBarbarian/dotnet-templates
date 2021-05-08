@@ -1,0 +1,30 @@
+﻿<Project>
+	<PropertyGroup>
+		<Authors>Liam Appleyard</Authors>
+		<Company>Liam Appleyard</Company>
+		<IsPackable>false</IsPackable>
+		<Version>1</Version>
+		<InformationalVersion>0</InformationalVersion>
+		<FileVersion>0</FileVersion>
+		<AssemblyVersion>1</AssemblyVersion>
+		<LangVersion>8.0</LangVersion>
+		<Copyright>Copyright © 2020</Copyright>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Stylecop ruleset location">
+		<CodeAnalysisRuleSet>$(SolutionDir)_Company_._Project_.Default.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="$(SolutionDir)stylecop.json" Link="stylecop.json" />
+	</ItemGroup>
+
+	<PropertyGroup Label="Treat warnings as errors" Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<!--<PropertyGroup>
+		<DefineConstants Condition=" '$(IsMac)' == 'true' ">$(DefineConstants);MAC</DefineConstants>
+	</PropertyGroup>-->
+</Project>

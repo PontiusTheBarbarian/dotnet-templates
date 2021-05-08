@@ -1,0 +1,11 @@
+variables:
+  - template: templates/variables.azure.yaml
+
+pool:
+  vmImage: '$(VM_IMAGE)'
+
+stages:
+- stage: 'Continuous_Deployment'
+  dependsOn: Continuous_Integration
+  jobs:
+  - template: templates/deploy.yaml
